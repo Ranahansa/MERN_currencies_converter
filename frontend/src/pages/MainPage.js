@@ -26,9 +26,22 @@ export default function MainPage() {
         getCurrencyNames();
     },[])
     
-    const handlesubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(date, sourceCurrency, targetCurrency, amountInSourceCurrency,);
+        try{
+            const response = await axios.post("http://localhost:5000/convert",{
+                params: {
+                    date,
+                    sourceCurrency,
+                    targetCurrency,
+                    amountInSourceCurrency,
+                },
+            });
+            setAmountInTargetCurrency(response.data);
+            
+        } catch(error){
+            console.log(error)
+        }
     }
     
     return (
@@ -37,7 +50,7 @@ export default function MainPage() {
             <p className='py-8 lg:mx-32 text-m opacity-40'>The Currency Converter web application is your go-to tool for quick and accurate currency conversion. Whether you're a world traveler, international business professional, or simply curious about exchange rates, this user-friendly application simplifies the process of converting one currency to another.</p>
             <div className='flex-col justify-center mt-5 flex-center'>
                 <section className='w-full mx-auto lg:w-1/2'>
-                    <form onSubmit={handlesubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div>
                         <div className="mb-6">
                             <label htmlFor={Date} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
