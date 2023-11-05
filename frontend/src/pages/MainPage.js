@@ -50,6 +50,9 @@ export default function MainPage() {
                             <label htmlFor={sourceCurrency} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Source Currency</label>
                             <select onChange={(e) => setSourceCurrency(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" name={sourceCurrency} id={sourceCurrency} > 
                                 <option value="">--Select Currency--</option>
+                                {Object.keys(currencyNames).map((currency) => (
+                                    <option className='p-1' key={currency} value={currency}>{currencyNames[currency]}</option>
+                                ))}
                                 </select>
                     </div>
                         </div>
@@ -59,6 +62,9 @@ export default function MainPage() {
                             <label htmlFor={targetCurrency} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target Currency</label>
                             <select onChange={(e) => setTargetCurrency(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" name={targetCurrency} id={targetCurrency} > 
                                 <option value="">--Select Target Currency--</option>
+                                {Object.keys(currencyNames).map((currency) => (
+                                    <option className='p-1' key={currency} value={currency}>{currencyNames[currency]}</option>
+                                ))}
                                 </select>
                     </div>
                         </div>
