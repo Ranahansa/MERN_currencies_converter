@@ -1,4 +1,5 @@
-import React ,{useState} from 'react'
+import React ,{useEffect, useState} from 'react'
+import axios from 'axios';
 
 
 export default function MainPage() {
@@ -8,6 +9,26 @@ export default function MainPage() {
     const [targetCurrency, setTargetCurrency] = useState("");
     const [amountInSourceCurrency, setAmountInSourceCurrency] = useState("0");
     const [amountInTargetCurrency, setAmountInTargetCurrency] = useState("0");
+    const[currencyNames, setCurrencyNames] = useState([]);
+
+    useEffect(() => {
+        const getCurrencyNames = async () => {
+            try{
+                const response = await axios.get("http://localhost:5000/getAllCurrencies")
+                console.log(response.data)
+            }
+            catch(error){
+                console.log(error)
+            }
+            
+        }
+        getCurrencyNames();
+    },[])
+    
+    const handlesubmit = (e) => {
+        e.preventDefault();
+        console.log(date, sourceCurrency, targetCurrency, amountInSourceCurrency,);
+    }
     
     return (
         <div>
@@ -15,7 +36,7 @@ export default function MainPage() {
             <p className='py-8 lg:mx-32 text-m opacity-40'>The Currency Converter web application is your go-to tool for quick and accurate currency conversion. Whether you're a world traveler, international business professional, or simply curious about exchange rates, this user-friendly application simplifies the process of converting one currency to another.</p>
             <div className='flex-col justify-center mt-5 flex-center'>
                 <section className='w-full mx-auto lg:w-1/2'>
-                    <form>
+                    <form onSubmit={handlesubmit}>
                         <div>
                         <div className="mb-6">
                             <label htmlFor={Date} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
