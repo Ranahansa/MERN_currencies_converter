@@ -15,6 +15,7 @@ export default function MainPage() {
         const getCurrencyNames = async () => {
             try{
                 const response = await axios.get("http://localhost:5000/getAllCurrencies")
+                setCurrencyNames(response.data)
                 console.log(response.data)
             }
             catch(error){
