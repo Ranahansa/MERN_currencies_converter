@@ -1,1 +1,1 @@
-# MERN_currencies_convertor
+# MERN_currencies_converter
