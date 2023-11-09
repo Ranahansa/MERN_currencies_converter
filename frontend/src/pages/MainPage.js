@@ -95,8 +95,8 @@ export default function MainPage() {
                 </section>
             </div>
             <br/>
-            <section className='w-full mx-auto mt-4 text-lg lg:w-1/2'>
-            {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equal to {""} {amountInTargetCurrency} in {currencyNames[targetCurrency]}.
+            <section className='w-full mx-auto mt-4 text-[24px] lg:w-1/2'>
+            {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equal to {""} <span className='text-green-600'>{amountInTargetCurrency}</span> in {currencyNames[targetCurrency]}.
             </section>
                 </div>
     )
