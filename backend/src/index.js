@@ -11,12 +11,12 @@ app.get('/getAllCurrencies', async (req, res) => {
     const nameURL = `https://openexchangerates.org/api/currencies.json?app_id=e0336faf0827409c8adb47f7a69838d3`;  
 
     try {
-        const namesResponse = await axios.get(nameURL);
-        const nameData = namesResponse.data;
+        const namesResponce = await axios.get(nameURL);
+        const nameData = namesResponce.data;
 
         return res.json(nameData);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 })
 
@@ -30,15 +30,15 @@ app.get('/convert', async (req, res) => {
 
     try{
         const dataUrl = `https://openexchangerates.org/api/historical/${date}.json?app_id=e0336faf0827409c8adb47f7a69838d3`;
-        const dataResponse = await axios.get(dataUrl);
-        const rates = dataResponse.rates;
+        const dataResponce = await axios.get(dataUrl);
+        const rates = dataResponce.data.rates;
 
         const sourceRate = rates[sourceCurrency];
         const targetRate = rates[targetCurrency];
 
         const targetAmount = (targetRate / sourceRate) * amountInSourceCurrency;
 
-        return res.json({targetAmount})
+        return res.json(targetAmount)
     }
     catch(error){
         console.log(error);

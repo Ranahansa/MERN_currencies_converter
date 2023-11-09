@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function MainPage() {
 
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState('');
     const [sourceCurrency, setSourceCurrency] = useState("");
     const [targetCurrency, setTargetCurrency] = useState("");
     const [amountInSourceCurrency, setAmountInSourceCurrency] = useState("0");
@@ -14,9 +14,9 @@ export default function MainPage() {
     useEffect(() => {
         const getCurrencyNames = async () => {
             try{
-                const response = await axios.get("http://localhost:5000/getAllCurrencies")
-                setCurrencyNames(response.data)
-                console.log(response.data)
+                const responce = await axios.get("http://localhost:5000/getAllCurrencies")
+                setCurrencyNames(responce.data)
+                console.log(responce.data)
             }
             catch(error){
                 console.log(error)
@@ -29,7 +29,7 @@ export default function MainPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = await axios.post("http://localhost:5000/convert",{
+            const responce = await axios.get("http://localhost:5000/convert",{
                 params: {
                     date,
                     sourceCurrency,
@@ -37,10 +37,10 @@ export default function MainPage() {
                     amountInSourceCurrency,
                 },
             });
-            setAmountInTargetCurrency(response.data);
+            setAmountInTargetCurrency(responce.data);
             
         } catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
     
@@ -94,6 +94,7 @@ export default function MainPage() {
                     </form>
                 </section>
             </div>
+            {amountInTargetCurrency}
         </div>
     )
 }
