@@ -10,25 +10,36 @@ export default function MainPage() {
     const [amountInSourceCurrency, setAmountInSourceCurrency] = useState("0");
     const [amountInTargetCurrency, setAmountInTargetCurrency] = useState("0");
     const[currencyNames, setCurrencyNames] = useState([]);
-
+    
+        // Fetches currency names from the server
     useEffect(() => {
         const getCurrencyNames = async () => {
             try{
+                 // Send a GET request to the server to get all currencies
                 const responce = await axios.get("http://localhost:5000/getAllCurrencies")
+                // Set the fetched currency names in state
                 setCurrencyNames(responce.data)
+                 // Log the fetched data to the console
                 console.log(responce.data)
             }
             catch(error){
+                 // Log any errors that occur during the request
                 console.log(error)
             }
             
         }
+        // Call the getCurrencyNames function when the component mounts
         getCurrencyNames();
     },[])
     
+        /**
+     * Handles the form submission
+     * @param {Event} e - The form submission event
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
+             // Send a GET request to the server to convert the currencies
             const responce = await axios.get("http://localhost:5000/convert",{
                 params: {
                     date,
@@ -37,9 +48,11 @@ export default function MainPage() {
                     amountInSourceCurrency,
                 },
             });
+              // Update the state with the converted amount
             setAmountInTargetCurrency(responce.data);
             
         } catch(error){
+            // Log any errors that occur during the conversion
             console.error(error)
         }
     }
@@ -95,6 +108,11 @@ export default function MainPage() {
                 </section>
             </div>
             <br/>
+            
+            /**
+            This section displays the converted currency amount.
+            It shows the source currency, target currency, and the converted amount.
+             */
             <section className='w-full mx-auto mt-4 text-[24px] lg:w-1/2'>
             {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equal to {""} <span className='text-green-600'>{amountInTargetCurrency}</span> in {currencyNames[targetCurrency]}.
             </section>
