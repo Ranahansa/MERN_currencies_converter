@@ -38,7 +38,7 @@ app.get('/convert', async (req, res) => {
 
         const targetAmount = (targetRate / sourceRate) * amountInSourceCurrency;
 
-        return res.json(targetAmount)
+        return res.json(targetAmount.toFixed(2));
     }
     catch(error){
         console.log(error);

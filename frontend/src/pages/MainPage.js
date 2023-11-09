@@ -94,7 +94,10 @@ export default function MainPage() {
                     </form>
                 </section>
             </div>
-            {amountInTargetCurrency}
-        </div>
+            <br/>
+            <section className='w-full mx-auto mt-4 text-lg lg:w-1/2'>
+            {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equal to {""} {amountInTargetCurrency} in {currencyNames[targetCurrency]}.
+            </section>
+                </div>
     )
 }
