@@ -59,8 +59,8 @@ export default function MainPage() {
     
     return (
         <div>
-            <h1 className='text-5xl font-bold text-green-600 lg:mx-32' >Convert Your Currencies</h1>
-            <p className='py-8 lg:mx-32 text-m opacity-40'>The Currency Converter web application is your go-to tool for quick and accurate currency conversion. Whether you're a world traveler, international business professional, or simply curious about exchange rates, this user-friendly application simplifies the process of converting one currency to another.</p>
+            <h1 className='text-5xl font-bold text-green-600 lg:mx-32' >Convert Your Currency</h1>
+            <p className='py-8 lg:mx-32 text-m opacity-40'>Empower your transactions with our converter—where borders dissolve, values unite. Navigate the global marketplace seamlessly, turning diversity into prosperity effortlessly.</p>
             <div className='flex-col justify-center mt-5 flex-center'>
                 <section className='w-full mx-auto lg:w-1/2'>
                     <form onSubmit={handleSubmit}>
